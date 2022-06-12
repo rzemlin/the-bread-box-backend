@@ -1,7 +1,7 @@
 class Api::V1::RecipesController < ApplicationController
   def index
-    recipes = Recipe.All
-    render json: RecipeSerializer.new(recipes)
+    recipes = Recipe.all
+    render json: RecipeSerializer.new(recipes), :except => [:created_at, :updated_at]
   end
 
   def create
@@ -16,6 +16,6 @@ class Api::V1::RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:name, :ingredients, :intructions, :image, :category_id)
+    params.require(:recipe).permit(:name, :ingredients, :directions, :image, :category_id)
   end
 end
