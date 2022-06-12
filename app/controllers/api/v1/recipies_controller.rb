@@ -1,7 +1,7 @@
 class Api::V1::RecipesController < ApplicationController
   def index
     recipes = Recipe.All
-    render json: recipes
+    render json: RecipeSerializer.new(recipes)
   end
 
   def create
